@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Zope's Skin & Laser Clinic | Dermatologist in Ratnagiri, Nachane</title>
+    <meta name="description" content="Expert dermatology and laser treatments at Dr. Zope's Skin & Laser Clinic in Nachane, Ratnagiri. Accurate diagnosis, effective plans, and trusted care for radiant skin.">
+    <script src="server.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "Dr. Zope's Skin & Laser Clinic",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "State Bank Colony",
+        "addressLocality": "Nachane",
+        "addressRegion": "Maharashtra",
+        "postalCode": "415639"
+      },
+      "telephone": "93208 82187",
+      "url": "https://drzopesclinic.com",
+      "openingHours": "Mo-Sa 10:00-18:00"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-navy: #7686b1;
+            --accent-teal: #399ac7;
+            --neutral-white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --gold: #D4AF37;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1,h2,h3 { font-family: 'Playfair Display', serif; }
+        .gradient-hero { background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-teal) 100%); }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.05); }
+        .stars { color: var(--gold); }
+        .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-md z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="D:\Dr.Zopes\Image material\logo only.jfif" alt="Dr. Zope's Skin & Laser Clinic" class="h-10 w-auto">
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-var(--primary-navy) font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-var(--primary-navy) font-medium">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-var(--primary-navy) font-medium">Services</a>
+                    <a href="#contact" class="text-gray-700 hover:text-var(--primary-navy) font-medium">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About</a>
+            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Services</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-hero flex items-center justify-center text-white px-4 pt-16">
+        <div class="max-w-7xl mx-auto text-center fade-in">
+            <img src="D:\Dr.Zopes\Image material\logozope's.jfif" alt="Logo" class="mx-auto h-32 w-auto mb-8 drop-shadow-2xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Radiant Skin Starts Here</h1>
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto opacity-90">Expert dermatology & laser treatments in Nachane. Accurate diagnosis, effective plans, and trusted local care for clear, confident skin.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#contact" class="bg-var(--accent-teal) hover:bg-teal-500 text-white font-semibold py-4 px-8 rounded-full text-lg hover-scale shadow-xl">Book Appointment</a>
+                <a href="tel:9320882187" class="border-2 border-white hover:bg-white hover:text-var(--primary-navy) font-semibold py-4 px-8 rounded-full text-lg hover-scale">Call Now: 93208 82187</a>
+            </div>
+            <div class="flex items-center justify-center gap-2 text-sm opacity-80">
+                <div class="stars text-sm">★ ★ ★ ☆ ☆</div>
+                <span>3.3 (46 reviews)</span>
+                <span class="ml-4">5+ Years Trusted Care</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-var(--light-gray)">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-var(--primary-navy) mb-8">Trusted Dermatology in Ratnagiri</h2>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">Dr. Zope's Skin & Laser Clinic is Ratnagiri's premier destination for skin health. With accurate diagnoses, effective treatment plans, and a polite, professional team, we help you rediscover your natural glow.</p>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-var(--accent-teal) mr-4"></i>5+ years serving Nachane families</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-var(--accent-teal) mr-4"></i>Modern AC clinic with parking</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-var(--accent-teal) mr-4"></i>Personalized care you can trust</li>
+                    </ul>
+                    <a href="#contact" class="mt-8 inline-block bg-var(--primary-navy) text-white font-semibold py-4 px-8 rounded-full hover-scale">Get Started Today</a>
+                </div>
+                <div class="grid grid-cols-2 gap-4 fade-in">
+                    <img  src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqRSGdzULExydrb2Cwg1J4hgmfzfbLK3obPJK9tG6psIvvV-sIwwNiN-usQgTn7jNpZrlzKOTfUfdSXTpzID6ND9V_-wAxrFpbuBL8oMHNcyD8wDBepuTAu1ECm6ThwrDtsflRscQ=s1360-w1360-h1020-rw" class="rounded-2xl shadow-2xl hover-scale object-cover h-64">
+                    <img  src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweoDW6AP-ei8syPK-88K5MsyCF2QZh8MzfHuoV4XN4U--YEp9H4pDj9AcbQ6IpiMDLnyPB5QaBKYuan4G99bQlVAVC1FerAXr77vLbD5XoCI8BgYlVc2IP3jxIm2-04O1hUHpGk=s1360-w1360-h1020-rw" jsaction="load:trigger.aMp9Zb" alt="Clinic Exterior" class="rounded-2xl shadow-2xl hover-scale object-cover h-64 col-span-2 md:col-span-1">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-var(--primary-navy) mb-6">Comprehensive Skin Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">From acne to advanced laser treatments, we address all your skin concerns with expertise and care.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-var(--light-gray) p-10 rounded-3xl text-center hover-scale group fade-in">
+                    <div class="w-24 h-24 bg-var(--accent-teal) rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:rotate-6 transition">
+                        <i class="fas fa-clinic-medical text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-var(--primary-navy)">General Dermatology</h3>
+                    <p class="text-gray-600 mb-8">Acne, eczema, rashes, infections. Accurate diagnosis for lasting results.</p>
+                    <a href="#contact" class="text-var(--accent-teal) font-semibold hover:underline">Learn More →</a>
+                </div>
+                <div class="bg-var(--light-gray) p-10 rounded-3xl text-center hover-scale group fade-in">
+                    <div class="w-24 h-24 bg-var(--gold) rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:rotate-6 transition">
+                        <i class="fas fa-laser-pointer text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-var(--primary-navy)">Laser & Scar Treatments</h3>
+                    <p class="text-gray-600 mb-8">Keloids, scars, vitiligo. Advanced laser technology for smooth skin.</p>
+                    <a href="#contact" class="text-var(--accent-teal) font-semibold hover:underline">Learn More →</a>
+                </div>
+                <div class="bg-var(--light-gray) p-10 rounded-3xl text-center hover-scale group fade-in">
+                    <div class="w-24 h-24 bg-var(--primary-navy) rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:rotate-6 transition">
+                        <i class="fas fa-spa text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-var(--primary-navy)">Aesthetic Wellness</h3>
+                    <p class="text-gray-600 mb-8">Personalized consultations for healthy, glowing skin maintenance.</p>
+                    <a href="#contact" class="text-var(--accent-teal) font-semibold hover:underline">Learn More →</a>
+                </div>
+            </div>
+            <div class="text-center mt-20 fade-in">
+                <a href="#contact" class="bg-var(--primary-navy) hover:bg-navy-700 text-white font-semibold py-4 px-12 rounded-full text-xl hover-scale shadow-xl">Ready for Flawless Skin? Book Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-32 bg-gradient-to-r from-var(--primary-navy) to-var(--accent-teal) text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Families Choose Us</h2>
+                <p class="text-2xl opacity-90 max-w-2xl mx-auto">Experience makes the difference in skin care.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-stethoscope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Accurate Diagnosis</h3>
+                    <p class="opacity-90">Precise assessments lead to effective treatments.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Polite Staff</h3>
+                    <p class="opacity-90">Professional, caring service every visit.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-snowflake text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Modern AC Clinic</h3>
+                    <p class="opacity-90">Comfortable environment with convenient parking.</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Convenient Hours</h3>
+                    <p class="opacity-90">Mon-Sat 10AM-6PM. Online booking available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-32 bg-var(--light-gray)">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-var(--primary-navy) mb-6">What Patients Say</h2>
+                <p class="text-xl text-gray-600">Real results from real people in Ratnagiri.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-3xl shadow-xl fade-in hover-scale">
+                    <div class="stars text-2xl mb-4">★ ★ ★ ★ ★</div>
+                    <p class="text-gray-600 italic mb-6">"Satisfaction with accurate diagnosis and effective treatment plans."</p>
+                    <div class="font-semibold">- Happy Patient</div>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-xl fade-in hover-scale md:col-span-1">
+                    <div class="stars text-2xl mb-4">★ ★ ★ ★ ☆</div>
+                    <p class="text-gray-600 italic mb-6">"The politeness of the staff made me feel very comfortable."</p>
+                    <div class="font-semibold">- Local Family</div>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-xl fade-in hover-scale">
+                    <div class="stars text-2xl mb-4">★ ★ ★ ★ ★</div>
+                    <p class="text-gray-600 italic mb-6">"Great results for skin infection. Highly recommend!"</p>
+                    <div class="font-semibold">- Satisfied Client</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-var(--primary-navy) mb-6">Book Your Transformation</h2>
+                <p class="text-xl text-gray-600 mb-12">One appointment away from radiant skin.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Form -->
+                <form class="space-y-6 fade-in" id="booking-form">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-var(--accent-teal) focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                        <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-var(--accent-teal) focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Concern</label>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-var(--accent-teal) focus:border-transparent">Describe your skin concern...</textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-var(--primary-navy) hover:bg-navy-700 text-white font-semibold py-4 px-8 rounded-2xl text-lg hover-scale shadow-xl">Send Booking Request</button>
+                </form>
+                <!-- Contact Info -->
+                <div class="space-y-8 fade-in">
+                    <div>
+                        <h3 class="text-2xl font-bold text-var(--primary-navy) mb-4">Visit Us</h3>
+                        <div class="h-96 rounded-3xl overflow-hidden shadow-2xl">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.670665247555!2d73.31237607515597!3d16.990742383830376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bea0d2262b65fbd%3A0xe8a13d5ecb84ca3!2sZope&#39;s%20Skin%20and%20Laser%20Clinic!5e0!3m2!1sen!2sin!4v1773511809870!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Address</h4>
+                            <p>Zope's Skin and Laser Clinic<br>State Bank Colony, Nachane<br>Maharashtra 415639</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Hours</h4>
+                            <p>Mon-Sat: 10AM - 6PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <a href="tel:9320882187" class="text-2xl font-bold text-var(--primary-navy)">📞 93208 82187</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-var(--primary-navy) text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <img src="D:\Dr.Zopes\Image material\logo only.jfif" alt="Logo" class="h-12 w-auto mx-auto mb-8 opacity-80">
+            <p class="text-gray-300 mb-8 max-w-md mx-auto">Transforming skin, building confidence in Ratnagiri since 2015.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/+919320882187" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="text-sm text-gray-400">
+                © 2026 Dr. Zope's Skin & Laser Clinic. All rights reserved. | Designed for excellence.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Form submission
+        document.getElementById('booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! We\'ll call you soon to confirm your appointment.');
+            e.target.reset();
+        });
+
+        // Exit intent popup (optional)
+        let shown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !shown) {
+                shown = true;
+                // Add popup logic here
+            }
+        });
+    </script>
+</body>
+</html>

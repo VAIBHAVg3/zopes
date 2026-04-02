@@ -1,0 +1,6 @@
+loaded_h_0(function(_){var window=this;
+_.v("RuUrcf");
+_.cg(_.Mya,class extends _.ho{static Ta(){return{service:{Fe:_.Fr}}}constructor(a){super();this.Qd=a.service.Fe}execute(a){const b={};_.yc(a,(c,d)=>{let e=c.Nt.getInstance(c.Ix),f;if((f=c.metadata)==null?0:f.Au)for(const g of c.metadata.Au)e=_.Kq(e,g.key,g.value);b[d]=this.Qd.fetch(e)});return b}});
+_.w();
+});
+// Google Inc.
