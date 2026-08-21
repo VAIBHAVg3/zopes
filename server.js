@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "docs")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "docs", "index.html"));
+});
 app.get("/health", (req, res) => {
   res.json({
     success: true,
