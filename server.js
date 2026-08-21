@@ -1,11 +1,22 @@
+
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
 require("dotenv").config();
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+app.use(
+  cors({
+    origin: "https://vaibhavg3.github.io",
+    methods: ["GET", "POST"],
+  })
+);
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
@@ -13,6 +24,8 @@ app.use(express.static(path.join(__dirname, "docs")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "docs", "index.html"));
 });
+
+
 app.get("/health", (req, res) => {
   res.json({
     success: true,

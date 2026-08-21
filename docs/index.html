@@ -364,6 +364,7 @@
 
         // Form submission
         
+        
         const appointmentForm = document.getElementById("appointmentForm");
         const formMessage = document.getElementById("form-message");
 
@@ -376,33 +377,57 @@
 
             submitButton.disabled = true;
             submitButton.textContent = "Sending...";
+            formMessage.className = "text-center";
+            formMessage.textContent = "";
 
-            try {
             const formData = new FormData(appointmentForm);
 
-            const response = await fetch("/register", {
+            const appointmentData = {
+            name: formData.get("name"),
+            phone: formData.get("phone"),
+            concern: formData.get("concern"),
+            };
+
+            try {
+            const response = await fetch(
+                "https://dr-zope-clinic-api.onrender.com/register",
+                {
                 method: "POST",
                 headers: {
-                "Content-Type": "application/json",
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(Object.fromEntries(formData.entries())),
-            });
+                body: JSON.stringify(appointmentData),
+                }
+            );
+
+            const contentType = response.headers.get("content-type") || "";
+
+            if (!contentType.includes("application/json")) {
+                const errorText = await response.text();
+
+                throw new Error(
+                `Server returned HTML instead of JSON. Status: ${response.status}. ` +
+                errorText.slice(0, 120)
+                );
+            }
 
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error(result.message || "Unable to submit request");
+                throw new Error(result.message || "Unable to submit appointment.");
             }
 
             formMessage.className = "text-center text-green-600";
             formMessage.textContent =
-                "Thank you. We will call you soon.";
+                "Thank you. Your appointment request was sent successfully.";
 
             appointmentForm.reset();
             } catch (error) {
+            console.error(error);
+
             formMessage.className = "text-center text-red-600";
             formMessage.textContent =
-                error.message || "Something went wrong.";
+                error.message || "Unable to send the appointment request.";
             } finally {
             submitButton.disabled = false;
             submitButton.textContent = "Send Booking Request";
