@@ -1,74 +1,174 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const path = require('path');
+const path = require("path");
+const express = require("express");
+const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static('public'));  // Put index.html here
-
-// MongoDB (free Atlas URI in .env)
-mongoose.connect(process.env.MONGODB_URI);
-
-// Appointment Schema
-const appointmentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
-  concern: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+app.use(express.json({ limit: "20kb" }));
+app.use(express.urlencoded({ extended: true, limit: "20kb" }));
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running",
 });
-const Appointment = mongoose.model('Appointment', appointmentSchema);
+});
 
-// Email setup (Gmail or SendGrid in .env)
-const transporter = nodemailer.createTransporter({
-  service: 'gmail',
+const registrationSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 2,
+      maxlength: 100,
+    },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+      match: /^[0-9]{10}$/,
+    },
+    concern: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 3,
+      maxlength: 2000,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Registration = mongoose.model(
+  "Registration",
+  registrationSchema
+);
+
+const emailTransporter = nodemailer.createTransport({
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS  // App password
-  }
+    pass: process.env.EMAIL_APP_PASSWORD,
+  },
 });
 
-// Booking route
-app.post('/book', async (req, res) => {
+app.get("/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running",
+  });
+});
+
+app.post("/register", async (req, res) => {
   try {
     const { name, phone, concern } = req.body;
 
-    // Save to DB
-    const newBooking = new Appointment({ name, phone, concern });
-    await newBooking.save();
+    if (!name || !phone || !concern) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, phone number, and concern are required.",
+      });
+    }
 
-    // Send email to clinic
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: '9833393399vs@gmail.com',  // Clinic email
-      subject: 'New Appointment Booking - Glow Skin & Laser',
-      html: `
-        <h2>New Booking Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Concern:</strong> ${concern}</p>
-        <p>Booked on: ${new Date().toLocaleString('en-IN')}</p>
-      `
+    const cleanName = String(name).trim();
+    const cleanPhone = String(phone)
+      .replace(/\s+/g, "")
+      .trim();
+    const cleanConcern = String(concern).trim();
+
+    if (cleanName.length < 2) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter a valid name.",
+      });
+    }
+
+    if (!/^[0-9]{10}$/.test(cleanPhone)) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter a valid 10-digit phone number.",
+      });
+    }
+
+    if (cleanConcern.length < 3) {
+      return res.status(400).json({
+        success: false,
+        message: "Please describe the concern.",
+      });
+    }
+
+    const registration = await Registration.create({
+      name: cleanName,
+      phone: cleanPhone,
+      concern: cleanConcern,
     });
 
-    res.json({ success: true, message: 'Booking confirmed! We\'ll contact you soon.' });
+    await emailTransporter.sendMail({
+      from: `Website Registration <${process.env.EMAIL_USER}>`,
+      to: process.env.RECEIVER_EMAIL,
+      replyTo: process.env.EMAIL_USER,
+      subject: `New appointment request from ${cleanName}`,
+      text: `
+New website registration
+
+Name: ${cleanName}
+Phone: ${cleanPhone}
+Concern: ${cleanConcern}
+Registration ID: ${registration._id}
+      `,
+      html: `
+        <h2>New Website Registration</h2>
+        <p><strong>Name:</strong> ${escapeHtml(cleanName)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(cleanPhone)}</p>
+        <p><strong>Concern:</strong> ${escapeHtml(cleanConcern)}</p>
+        <p><strong>Registration ID:</strong> ${registration._id}</p>
+      `,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Request submitted successfully.",
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.error("Registration error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to submit the request right now.",
+    });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
+async function startServer() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB connected");
 
+    await emailTransporter.verify();
+    console.log("Email transporter ready");
 
+    app.listen(PORT, () => {
+      console.log(`Website running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("Startup failed:", error.message);
+    process.exit(1);
+  }
+}
+
+startServer();
