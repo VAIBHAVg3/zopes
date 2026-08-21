@@ -162,14 +162,22 @@ async function startServer() {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected");
 
-    await emailTransporter.verify();
-    console.log("Email transporter ready");
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
 
-    app.listen(PORT, () => {
-      console.log(`Website running at http://localhost:${PORT}`);
+    emailTransporter.verify((error) => {
+      if (error) {
+        console.error(
+          "Gmail transporter check failed. The website is still running:",
+          error.message
+        );
+      } else {
+        console.log("Email transporter ready");
+      }
     });
   } catch (error) {
-    console.error("Startup failed:", error.message);
+    console.error("MongoDB startup failed:", error.message);
     process.exit(1);
   }
 }
